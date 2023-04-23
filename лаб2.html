@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>лаб2</title>
+	<style id="compiled-css" type="text/css">
+		.divTable {
+			width: 100%;
+			background-color: rgb(88, 88, 88);
+		}
+		.divTableCell,
+		.divTableHead {
+			display: table-cell;
+			padding: 3px 10px;
+		}
+		input[type="button"] {
+			width: 185px;
+			margin-top: 5px;
+			color:	orangered;
+		}
+		#SelectDen,
+		#SelectDen2 {
+			width: 200px;
+			margin-top: 5px;
+		}
+		.Table1 {
+			width: 100%;
+			background-color: rgb(70, 70, 70);
+			border: 1px solid black;
+		}
+		td,
+		tr {
+			border: 1px solid rgb(0, 0, 0);
+		}
+	</style>
+</head>
+<body>
+<div class="divTable">
+<div class="divTableCell">
+	<p><b>какой день:</b><br>
+		<select id='SelectDen' onchange="selectNum()">
+			<option value="1">понедельник</option>
+			<option value="2">вторник</option>
+			<option value="3">среда</option>
+			<option value="4">четверг</option>
+			<option value="5">пятница</option>
+		</select>
+</div>
+<div class="divTableCell">
+	<p><b>какая пара:</b><br>
+		<select id='SelectDen2'>
+			<option value="2">первая</option>
+			<option value="3">вторая</option>
+			<option value="4">третья</option>
+			<option value="5">четвертая</option>
+			<option value="6">пятая</option>
+		</select>
+</div>
+<div class="divTableCell">
+	<p><b></b><br> <input type="button" value="найти" onclick="highlightcell()">
+</div>
+</div>
+	<table class="Table1">
+		<tr>
+			<td>понедельник</td>
+			<td>вторник</td>
+			<td>среда</td>
+			<td>четверг</td>
+			<td>пятница</td>
+		</tr>
+		<tr>
+			<td>физра</td>
+			<td>методы</td>
+			<td>тп</td>
+			<td>архис</td>
+			<td>бд</td>
+		</tr>
+		<tr>
+			<td>вышмат</td>
+			<td>англ</td>
+			<td>философия</td>
+			<td>история</td>
+			<td>теор.вер</td>
+		</tr>
+		<tr>
+			<td>бд</td>
+			<td>чм</td>
+			<td>англ</td>
+			<td>физра</td>
+			<td>теор.вер</td>
+		</tr>
+		<tr>
+			<td>русский</td>
+			<td>тп</td>
+			<td>методы</td>
+			<td>вышмат</td>
+			<td>русс</td>
+		</tr>
+		<tr>
+			<td>история</td>
+			<td>типис</td>
+			<td>матан</td>
+			<td>типис</td>
+			<td>физра</td>
+		</tr>
+	</table>
+<script type="text/javascript">
+	let y = 0;
+	function selectNum(){
+       var strUser = document.getElementById("SelectDen").value;
+	}
+	function getRandomInRange(max) {
+		return Math.floor(Math.random() * (max + 1));
+	}
+	function reset() {
+		document.querySelectorAll('td').forEach(item => { item.style.backgroundColor = '#0FF' })
+	}
+		const highlightcell = (trVal, tdVal) => {
+		const trValue = trVal || document.querySelector('#SelectDen').value,
+		tdValue = tdVal || document.querySelector('#SelectDen2').value;
+		const css = `.Table1 :nth-child(${tdValue}) :nth-child(${trValue})`,
+		cell = document.querySelector(css);
+		console.log(cell);
+		if (cell) {
+			reset();
+			cell.style.backgroundColor = 'fuchsia';
+	}
+	}
+		window.onload = () => {
+		const trVal = 1 + getRandomInRange(4),
+		tdVal = 2 + getRandomInRange(4);
+		highlightcell(trVal, tdVal);			
+	}
+	</script>
+</body>
+</html>
